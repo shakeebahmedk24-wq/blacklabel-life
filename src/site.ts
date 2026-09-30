@@ -738,64 +738,23 @@ function initConciergeTerminal(): void {
     });
   }
 
-  // 13.4 Interactive Division Selector Chips for Concierge Form
-  const divisionChips = document.querySelectorAll<HTMLButtonElement>('[data-division-chip]');
-  const divisionInput = document.getElementById('form-division') as HTMLInputElement | null;
-  const divisionLabel = document.getElementById('selected-division-label');
+  // 13.4 Division Selector Dropdown & Live Token Preview
+  const divisionSelect = document.getElementById('form-division') as HTMLSelectElement | null;
   const tokenPreview = document.getElementById('form-token-preview');
 
   function updateTokenPreview(): void {
     if (!tokenPreview) return;
-    const divVal = divisionInput?.value || 'General';
+    const divVal = divisionSelect?.value || 'General';
     const rand = Math.floor(1000 + Math.random() * 9000);
     const shortDiv = divVal.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
     tokenPreview.textContent = `BLL-SF-${shortDiv || 'GEN'}-${rand}`;
   }
 
-  if (divisionChips.length > 0 && divisionInput) {
-    divisionChips.forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const val = chip.dataset.divisionChip || 'General Concierge';
-        divisionInput.value = val;
-        if (divisionLabel) divisionLabel.textContent = val;
-
-        divisionChips.forEach((c) => {
-          const isSelected = c === chip;
-          if (isSelected) {
-            c.className = 'division-chip active-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#faf8f5] bg-[#c5a059]/15 border-[#c5a059]';
-          } else {
-            c.className = 'division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]';
-          }
-        });
-
-        updateTokenPreview();
-      });
-    });
+  if (divisionSelect) {
+    divisionSelect.addEventListener('change', updateTokenPreview);
   }
 
-  // 13.5 Interactive Urgency Chips
-  const urgencyChips = document.querySelectorAll<HTMLButtonElement>('[data-urgency-chip]');
-  const urgencyInput = document.getElementById('form-urgency') as HTMLInputElement | null;
-
-  if (urgencyChips.length > 0 && urgencyInput) {
-    urgencyChips.forEach((chip) => {
-      chip.addEventListener('click', () => {
-        const val = chip.dataset.urgencyChip || 'Immediate (< 2 Hours)';
-        urgencyInput.value = val;
-
-        urgencyChips.forEach((c) => {
-          const isSelected = c === chip;
-          if (isSelected) {
-            c.className = 'urgency-chip active-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#faf8f5] bg-[#c5a059]/15 border-[#c5a059] text-center';
-          } else {
-            c.className = 'urgency-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709] text-center';
-          }
-        });
-      });
-    });
-  }
-
-  // 13.6 Concierge Desk Form Submission with High-Fidelity Intake Confirmation
+  // 13.5 Concierge Desk Form Submission with High-Fidelity Intake Confirmation
   const conciergeForm = document.getElementById('concierge-inquiry-form') as HTMLFormElement | null;
   const conciergeSuccess = document.getElementById('form-success-banner');
   const tokenRefEl = document.getElementById('success-token-ref');
@@ -808,31 +767,26 @@ function initConciergeTerminal(): void {
     conciergeForm.addEventListener('submit', (e: Event) => {
       e.preventDefault();
 
-      const nameInput = document.getElementById('form-name') as HTMLInputElement | null;
       const emailInput = document.getElementById('form-email') as HTMLInputElement | null;
       const phoneInput = document.getElementById('form-phone') as HTMLInputElement | null;
       const messageInput = document.getElementById('form-message') as HTMLTextAreaElement | null;
 
-      const name = nameInput?.value.trim() || 'Principal';
       const email = emailInput?.value.trim() || '';
       const phone = phoneInput?.value.trim() || 'Not specified';
-      const division = divisionInput?.value || 'General Concierge';
-      const urgency = urgencyInput?.value || 'Immediate (< 2 Hours)';
+      const division = divisionSelect?.value || 'General Concierge';
       const message = messageInput?.value.trim() || '';
 
       const tokenRef = 'BLL-SF-' + Math.floor(100000 + Math.random() * 900000);
       if (tokenRefEl) tokenRefEl.textContent = tokenRef;
 
-      const subject = encodeURIComponent(`[${tokenRef}] Sovereign Mandate: [${division}] - ${name}`);
+      const subject = encodeURIComponent(`[${tokenRef}] Sovereign Mandate: [${division}]`);
       const body = encodeURIComponent(
         `BLACK LABEL SOVEREIGN MANDATE TRANSMISSION\n` +
         `=======================================================\n` +
         `Reference Token: ${tokenRef}\n` +
-        `Principal / Client: ${name}\n` +
-        `Direct Email: ${email}\n` +
+        `Confidential Email: ${email}\n` +
         `Direct Telephone / Signal: ${phone}\n` +
-        `Target Division / Scope: ${division}\n` +
-        `Execution Urgency: ${urgency}\n\n` +
+        `Target Division / Scope: ${division}\n\n` +
         `Mandate Objectives & Scope:\n` +
         `${message}\n\n` +
         `-------------------------------------------------------\n` +

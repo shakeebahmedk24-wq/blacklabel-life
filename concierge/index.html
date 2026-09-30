@@ -765,117 +765,71 @@
 
               <form id="concierge-inquiry-form" class="space-y-4 sm:space-y-5">
                 
-                <!-- STEP 1: INTERACTIVE DIVISION PICKER CHIPS -->
+                <!-- STEP 1: DIVISION SELECTOR DROPDOWN -->
                 <div>
-                  <div class="flex items-center justify-between mb-2">
-                    <label class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold">
-                      1. Select Division or Scope <span class="text-[#c5a059]">*</span>
-                    </label>
-                    <span id="selected-division-label" class="text-[10px] font-mono text-[#c5a059]">General Concierge</span>
-                  </div>
-
-                  <!-- Division Chips Grid -->
-                  <div class="grid grid-cols-3 gap-1.5 text-center" role="group" aria-label="Select Division">
-                    <button type="button" data-division-chip="General Concierge" class="division-chip active-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#faf8f5] bg-[#c5a059]/15 border-[#c5a059]">
-                      General
-                    </button>
-                    <button type="button" data-division-chip="01 Social" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      01 Social
-                    </button>
-                    <button type="button" data-division-chip="02 Entertainment" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      02 Dining
-                    </button>
-                    <button type="button" data-division-chip="03 Trading" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      03 Trading
-                    </button>
-                    <button type="button" data-division-chip="04 Lifestyle" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      04 Lifestyle
-                    </button>
-                    <button type="button" data-division-chip="05 Design" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      05 Design
-                    </button>
-                    <button type="button" data-division-chip="06 Business Services" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      06 Business
-                    </button>
-                    <button type="button" data-division-chip="07 Investments" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      07 SoMa RE
-                    </button>
-                    <button type="button" data-division-chip="08 Luxury" class="division-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709]">
-                      08 Fleet
-                    </button>
-                  </div>
-
-                  <!-- Hidden Select for form payload -->
-                  <input type="hidden" id="form-division" name="division" value="General Concierge" />
-                </div>
-
-                <!-- STEP 2: URGENCY & SLA SELECTOR -->
-                <div>
-                  <label class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-2">
-                    2. Engagement Urgency & SLA <span class="text-[#c5a059]">*</span>
+                  <label for="form-division" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-2">
+                    1. Select Division or Scope <span class="text-[#c5a059]">*</span>
                   </label>
-                  <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Urgency Protocol">
-                    <button type="button" data-urgency-chip="Immediate (< 2 Hours)" class="urgency-chip active-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#faf8f5] bg-[#c5a059]/15 border-[#c5a059] text-center">
-                      &lt; 2 Hr SLA
-                    </button>
-                    <button type="button" data-urgency-chip="Priority (Same Day)" class="urgency-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709] text-center">
-                      Same Day
-                    </button>
-                    <button type="button" data-urgency-chip="Strategic Consultation" class="urgency-chip py-2 px-1 text-[10px] font-mono rounded-sm border transition-all text-[#a69f91] border-white/10 hover:border-white/20 bg-[#060709] text-center">
-                      Consultation
-                    </button>
+                  <div class="relative">
+                    <select
+                      id="form-division"
+                      name="division"
+                      required
+                      class="w-full px-3.5 py-3 bg-[#060709] border border-white/10 text-[#faf8f5] text-xs sm:text-sm rounded-sm focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] appearance-none cursor-pointer pr-10"
+                    >
+                      <option value="General Concierge">General Concierge — Central Triage &amp; Route My Mandate</option>
+                      <option value="01 Social">01 Social — Organic Authority &amp; Executive Reach</option>
+                      <option value="02 Entertainment">02 Entertainment — Private Dining &amp; Bespoke Galas</option>
+                      <option value="03 Trading">03 Trading — AI Collectibles &amp; Vaulting</option>
+                      <option value="04 Lifestyle">04 Lifestyle — Style, Housekeeping &amp; Butler Service</option>
+                      <option value="05 Design">05 Design — Architectural Staging &amp; Interiors</option>
+                      <option value="06 Business Services">06 Business Services — Institutional Back Office &amp; Tax</option>
+                      <option value="07 Investments">07 Investments — SoMa Trophy Real Estate</option>
+                      <option value="08 Luxury">08 Luxury — Exotic Fleet &amp; Haute Horlogerie</option>
+                      <option value="Executive Retainer">★ Sovereign Whole-Collective Retainer</option>
+                    </select>
+                    <!-- Custom Chevron -->
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#c5a059]">
+                      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
                   </div>
-                  <input type="hidden" id="form-urgency" name="urgency" value="Immediate (< 2 Hours)" />
                 </div>
 
-                <!-- STEP 3: PRINCIPAL CREDENTIALS -->
+                <!-- STEP 2: CONTACT CREDENTIALS (Email & Phone) -->
                 <div class="space-y-3 pt-1">
                   <div>
-                    <label for="form-name" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-1.5">
-                      3. Principal Name <span class="text-[#c5a059]">*</span>
+                    <label for="form-email" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-1.5">
+                      2. Confidential Email <span class="text-[#c5a059]">*</span>
                     </label>
                     <input
-                      type="text"
-                      id="form-name"
+                      type="email"
+                      id="form-email"
                       required
-                      placeholder="e.g. Sterling Hayes"
+                      placeholder="e.g. liaison@domain.com"
                       class="w-full px-3.5 py-2.5 bg-[#060709] border border-white/10 text-[#faf8f5] text-sm rounded-sm focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] placeholder-[#a69f91]/40"
                     />
                   </div>
 
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label for="form-email" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-1.5">
-                        Confidential Email <span class="text-[#c5a059]">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="form-email"
-                        required
-                        placeholder="s.hayes@domain.com"
-                        class="w-full px-3.5 py-2.5 bg-[#060709] border border-white/10 text-[#faf8f5] text-sm rounded-sm focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] placeholder-[#a69f91]/40"
-                      />
-                    </div>
-
-                    <div>
-                      <label for="form-phone" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-1.5">
-                        Direct Phone / Signal
-                      </label>
-                      <input
-                        type="tel"
-                        id="form-phone"
-                        placeholder="+1 (415) 890-4800"
-                        class="w-full px-3.5 py-2.5 bg-[#060709] border border-white/10 text-[#faf8f5] text-sm rounded-sm focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] placeholder-[#a69f91]/40"
-                      />
-                    </div>
+                  <div>
+                    <label for="form-phone" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold mb-1.5">
+                      Direct Phone / Signal <span class="text-[#a69f91] font-normal text-[10px]">(Optional)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      id="form-phone"
+                      placeholder="+1 (415) 890-4800"
+                      class="w-full px-3.5 py-2.5 bg-[#060709] border border-white/10 text-[#faf8f5] text-sm rounded-sm focus:outline-none focus:border-[#c5a059] focus:ring-1 focus:ring-[#c5a059] placeholder-[#a69f91]/40"
+                    />
                   </div>
                 </div>
 
-                <!-- STEP 4: MANDATE OBJECTIVES & SCOPE -->
+                <!-- STEP 3: MANDATE OBJECTIVES & SCOPE -->
                 <div>
                   <div class="flex items-center justify-between mb-1.5">
                     <label for="form-message" class="block text-[11px] font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold">
-                      4. Mandate Objectives & Scope <span class="text-[#c5a059]">*</span>
+                      3. Mandate Objectives & Scope <span class="text-[#c5a059]">*</span>
                     </label>
                     <span class="text-[10px] font-mono text-[#a69f91]">STRICT NDA</span>
                   </div>
