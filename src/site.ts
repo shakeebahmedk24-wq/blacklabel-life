@@ -76,11 +76,11 @@ function initSite(): void {
       'scroll',
       () => {
         if (window.scrollY > 20) {
-          header.classList.add('bg-[#060709]/95', 'shadow-2xl', 'border-white/10');
-          header.classList.remove('bg-[#060709]/85', 'border-white/[0.08]');
+          header.classList.add('bg-[#060709]/95', 'shadow-2xl', 'border-[#c5a059]/30');
+          header.classList.remove('bg-[#060709]/85', 'border-[#c5a059]/20');
         } else {
-          header.classList.remove('bg-[#060709]/95', 'shadow-2xl', 'border-white/10');
-          header.classList.add('bg-[#060709]/85', 'border-white/[0.08]');
+          header.classList.remove('bg-[#060709]/95', 'shadow-2xl', 'border-[#c5a059]/30');
+          header.classList.add('bg-[#060709]/85', 'border-[#c5a059]/20');
         }
       },
       { passive: true }

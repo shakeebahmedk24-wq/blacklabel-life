@@ -1039,16 +1039,16 @@ function generateHomePage(): string {
     .map((card) => {
       const hasImage = Boolean(card.image);
       return `
-      <article data-division-category="${card.category}" class="division-card-item relative group bg-[#0b0e13] border border-white/[0.09] hover:border-[#c5a059]/60 rounded-sm luxury-card-hover flex flex-col justify-between overflow-hidden" data-reveal="scale">
+      <article data-division-category="${card.category}" class="division-card-item relative group bg-[#0b0e13] border border-[#c5a059]/25 hover:border-[#c5a059]/75 rounded-sm luxury-card-hover flex flex-col justify-between overflow-hidden shadow-xl" data-reveal="scale">
         ${
           hasImage
             ? `
         <!-- High-End Photography Card Window -->
-        <div class="relative h-56 sm:h-64 w-full overflow-hidden border-b border-white/[0.08]">
+        <div class="relative h-56 sm:h-64 w-full overflow-hidden border-b border-[#c5a059]/15">
           <img src="${card.image}" alt="Black Label ${card.title} - ${card.tagline}" width="800" height="450" loading="lazy" class="w-full h-full object-cover luxury-image-zoom filter brightness-90 group-hover:brightness-100" />
           <div class="absolute inset-0 bg-gradient-to-t from-[#0b0e13] via-[#0b0e13]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center gap-2">
-            <span class="px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-[#faf8f5] bg-[#060709]/85 backdrop-blur-md border border-white/10 rounded-sm">
+            <span class="px-3 py-1 text-[11px] font-mono uppercase tracking-widest text-[#faf8f5] bg-[#060709]/85 backdrop-blur-md border border-[#c5a059]/30 rounded-sm">
               ${card.badge}
             </span>
           </div>
@@ -1081,7 +1081,7 @@ function generateHomePage(): string {
             <p class="text-sm sm:text-[15px] text-[#dcd6ca] leading-relaxed font-light pt-1">${card.desc}</p>
           </div>
 
-          <div class="pt-5 mt-5 border-t border-white/[0.08] flex items-center justify-between">
+          <div class="pt-5 mt-5 border-t border-[#c5a059]/15 flex items-center justify-between">
             <span class="text-xs font-mono uppercase tracking-widest text-[#a69f91] group-hover:text-[#faf8f5] transition-colors">
               Division ${card.num}
             </span>
@@ -1280,19 +1280,6 @@ function generateHomePage(): string {
           <p class="text-sm sm:text-base text-[#dcd6ca] leading-relaxed font-light">
             Engineered from Millennium Tower to protect focus, generate abundance, and manage every dimension of high-performance luxury living.
           </p>
-
-          <!-- Interactive Filter Tabs -->
-          <div class="pt-6 flex flex-wrap items-center justify-center gap-2.5 sm:gap-4" role="tablist" aria-label="Division Categories">
-            <button type="button" role="tab" aria-selected="true" data-filter-category="all" class="px-6 py-2.5 rounded-sm text-xs sm:text-sm uppercase tracking-[0.18em] transition-all duration-200 bg-[#c5a059] text-[#060709] font-semibold shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a059]">
-              All 8 Divisions
-            </button>
-            <button type="button" role="tab" aria-selected="false" data-filter-category="living" class="px-6 py-2.5 rounded-sm text-xs sm:text-sm uppercase tracking-[0.18em] transition-all duration-200 bg-white/[0.04] text-[#e6e0d4]/85 hover:text-[#faf8f5] hover:bg-white/[0.08] border border-white/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a059]">
-              Private Living & Hospitality
-            </button>
-            <button type="button" role="tab" aria-selected="false" data-filter-category="enterprise" class="px-6 py-2.5 rounded-sm text-xs sm:text-sm uppercase tracking-[0.18em] transition-all duration-200 bg-white/[0.04] text-[#e6e0d4]/85 hover:text-[#faf8f5] hover:bg-white/[0.08] border border-white/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a059]">
-              Wealth & Enterprise
-            </button>
-          </div>
         </div>
 
         <!-- Curated 8 Division Bento Grid -->
@@ -1963,7 +1950,7 @@ function generateDivisionPage(div: DivisionPageConfig): string {
   const relatedHtml = div.related
     .map(
       (rel) => `
-      <a href="${rel.href}" class="p-8 bg-[#0b0e13]/80 border border-white/[0.08] hover:border-[#c5a059]/70 rounded-sm group transition-all luxury-card-hover flex flex-col justify-between space-y-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a059] shadow-lg" data-reveal>
+      <a href="${rel.href}" class="p-8 bg-[#0b0e13]/80 border border-[#c5a059]/25 hover:border-[#c5a059]/75 rounded-sm group transition-all luxury-card-hover flex flex-col justify-between space-y-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#c5a059] shadow-lg" data-reveal>
         <div class="space-y-2">
           <div class="flex items-center justify-between">
             <span class="text-xs font-mono text-[#c5a059] uppercase tracking-widest">${rel.label.slice(0, 2)}</span>
@@ -2494,44 +2481,18 @@ function generateConciergePage(): string {
               <div class="absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-[#c5a059]/70 pointer-events-none z-20"></div>
               <div class="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-[#c5a059]/70 pointer-events-none z-20"></div>
 
-              <!-- Top Terminal Header & View Tabs -->
-              <div class="p-3.5 sm:p-4 bg-[#090b0e] border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10">
+              <!-- Top Terminal Header -->
+              <div class="p-3.5 sm:p-4 bg-[#090b0e] border-b border-white/[0.08] flex items-center justify-between gap-3 relative z-10">
                 <div class="flex items-center gap-2.5">
                   <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span class="text-xs font-mono uppercase tracking-[0.18em] text-[#faf8f5] font-semibold">
                     Millennium Tower · Headquarters Terminal
                   </span>
                 </div>
-
-                <!-- Perspective Segmented Switcher -->
-                <div class="flex items-center gap-1 p-1 bg-[#060709] border border-white/10 rounded-sm self-start sm:self-auto" role="tablist" aria-label="Terminal Views">
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="true"
-                    data-terminal-view="map"
-                    class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[#060709] bg-[#c5a059] font-semibold rounded-sm transition-all focus-visible:outline-none"
-                  >
-                    Google Map
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                    data-terminal-view="tower"
-                    class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[#a69f91] hover:text-[#faf8f5] hover:bg-white/[0.05] rounded-sm transition-all focus-visible:outline-none"
-                  >
-                    Tower Architecture
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                    data-terminal-view="protocols"
-                    class="px-2.5 py-1 text-[10px] font-mono uppercase tracking-wider text-[#a69f91] hover:text-[#faf8f5] hover:bg-white/[0.05] rounded-sm transition-all focus-visible:outline-none"
-                  >
-                    Arrival Protocols
-                  </button>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-[#c5a059] bg-[#c5a059]/10 px-2.5 py-1 rounded-sm border border-[#c5a059]/30">
+                    301 Mission St · Level 48 HQ
+                  </span>
                 </div>
               </div>
 
@@ -2587,143 +2548,6 @@ function generateConciergePage(): string {
                         Private Porte-Cochère valet on Fremont St. High-speed residential elevators with biometric clearance.
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VIEW 2: TOWER ARCHITECTURAL SCHEMATIC (Interactive Elevation Guide) -->
-              <div id="terminal-view-tower" class="hidden relative w-full p-5 sm:p-6 bg-[#080b0f] min-h-[460px] sm:min-h-[500px]">
-                <div class="mb-4">
-                  <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-[#c5a059]">Architectural Cross-Section</span>
-                  <h4 class="text-xl font-serif text-[#faf8f5] mt-0.5">Millennium Tower Spatial Blueprint</h4>
-                  <p class="text-xs text-[#a69f91] mt-1 leading-relaxed">
-                    Select a level to inspect Black Label operational staging, private dining, and security perimeters.
-                  </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
-                  <!-- Floor Selector Column -->
-                  <div class="md:col-span-5 space-y-2" role="tablist" aria-label="Millennium Tower Levels">
-                    <button
-                      type="button"
-                      data-tower-level="60"
-                      class="w-full text-left p-3 rounded-sm border border-[#c5a059] bg-[#c5a059]/10 transition-all flex items-center justify-between group"
-                    >
-                      <div>
-                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#c5a059] font-semibold">LEVEL 60 · SKY RESIDENCE</div>
-                        <div class="text-sm font-serif text-[#faf8f5] group-hover:text-[#c5a059] transition-colors">The Grand Penthouse</div>
-                      </div>
-                      <span class="text-xs text-[#c5a059] font-mono">5,500 SQ FT</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      data-tower-level="48"
-                      class="w-full text-left p-3 rounded-sm border border-white/10 hover:border-[#c5a059]/50 bg-white/[0.02] hover:bg-white/[0.04] transition-all flex items-center justify-between group"
-                    >
-                      <div>
-                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#a69f91]">LEVEL 48 · COMMAND</div>
-                        <div class="text-sm font-serif text-[#faf8f5] group-hover:text-[#c5a059] transition-colors">Black Label Headquarters</div>
-                      </div>
-                      <span class="text-xs text-[#a69f91] font-mono">CONCIERGE DESK</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      data-tower-level="10"
-                      class="w-full text-left p-3 rounded-sm border border-white/10 hover:border-[#c5a059]/50 bg-white/[0.02] hover:bg-white/[0.04] transition-all flex items-center justify-between group"
-                    >
-                      <div>
-                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#a69f91]">LEVEL 10 · PRIVATE CLUB</div>
-                        <div class="text-sm font-serif text-[#faf8f5] group-hover:text-[#c5a059] transition-colors">Michael Mina Dining & Vault</div>
-                      </div>
-                      <span class="text-xs text-[#a69f91] font-mono">5,000 BOTTLES</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      data-tower-level="1"
-                      class="w-full text-left p-3 rounded-sm border border-white/10 hover:border-[#c5a059]/50 bg-white/[0.02] hover:bg-white/[0.04] transition-all flex items-center justify-between group"
-                    >
-                      <div>
-                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#a69f91]">GROUND · ARRIVAL</div>
-                        <div class="text-sm font-serif text-[#faf8f5] group-hover:text-[#c5a059] transition-colors">Fremont St Porte-Cochère</div>
-                      </div>
-                      <span class="text-xs text-emerald-400 font-mono">24/7 VALET</span>
-                    </button>
-                  </div>
-
-                  <!-- Floor Details Display Card -->
-                  <div class="md:col-span-7 bg-[#060709] border border-white/10 rounded-sm p-4 sm:p-5 flex flex-col justify-between">
-                    <div id="tower-level-content" class="space-y-3">
-                      <!-- Default: Level 60 Content -->
-                      <div class="flex items-center justify-between border-b border-white/[0.08] pb-3">
-                        <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#c5a059]">PENTHOUSE ELEVATION</span>
-                        <span class="text-xs font-mono text-[#a69f91]">ALTITUDE: 645 FT</span>
-                      </div>
-                      <h5 class="text-lg font-serif text-[#faf8f5]">Level 60 — The Sovereign Sky Penthouse</h5>
-                      <p class="text-xs text-[#dcd6ca]/80 leading-relaxed font-light">
-                        Occupying the premier apex of Millennium Tower, our private showcase residence offers 360-degree panoramic vantage of the Bay Bridge, downtown skyline, and Golden Gate corridor. Features private entertainer's terrace and bespoke interior staging by Black Label Design.
-                      </p>
-                      <div class="pt-2 grid grid-cols-2 gap-2 text-[11px] font-mono text-[#a69f91]">
-                        <div class="bg-white/[0.02] p-2 border border-white/5 rounded-sm">
-                          <span class="text-[#c5a059] block">Catering Capacity</span>
-                          <span>Up to 60 Guests</span>
-                        </div>
-                        <div class="bg-white/[0.02] p-2 border border-white/5 rounded-sm">
-                          <span class="text-[#c5a059] block">Access Clearance</span>
-                          <span>Executive Escort Only</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="mt-4 pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] font-mono text-[#a69f91]">
-                      <span>SECURITY: BIOMETRIC RESIDENTIAL</span>
-                      <span class="text-[#c5a059]">PRIVATE ELEVATOR</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VIEW 3: ARRIVAL & TRANSIT PROTOCOLS -->
-              <div id="terminal-view-protocols" class="hidden relative w-full p-5 sm:p-6 bg-[#080b0f] min-h-[460px] sm:min-h-[500px]">
-                <div class="mb-5">
-                  <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-[#c5a059]">Discrete Access Channels</span>
-                  <h4 class="text-xl font-serif text-[#faf8f5] mt-0.5">VIP Arrival & Valet Instructions</h4>
-                  <p class="text-xs text-[#a69f91] mt-1 leading-relaxed">
-                    Designed for high-profile principals, family offices, and enterprise executives requiring discrete transit.
-                  </p>
-                </div>
-
-                <div class="space-y-3.5">
-                  <div class="p-4 bg-[#060709] border border-white/10 rounded-sm">
-                    <div class="flex items-center gap-2.5 mb-1.5">
-                      <span class="text-xs font-mono font-semibold text-[#c5a059]">01. AUTOMOTIVE ARRIVAL (VALET)</span>
-                      <span class="text-[10px] font-mono text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded-sm">RECOMMENDED</span>
-                    </div>
-                    <p class="text-xs text-[#dcd6ca]/80 leading-relaxed font-light">
-                      Approach via Fremont Street (one-way southbound off Market St). Enter the covered private porte-cochère on the right side between Mission and Howard. Advise the head valet: <em>"Black Label Concierge Reception."</em> Dedicated subterranean staging for exotics and armored vehicles.
-                    </p>
-                  </div>
-
-                  <div class="p-4 bg-[#060709] border border-white/10 rounded-sm">
-                    <div class="flex items-center gap-2.5 mb-1.5">
-                      <span class="text-xs font-mono font-semibold text-[#c5a059]">02. SFO AVIATION & HELIPAD TRANSIT</span>
-                      <span class="text-[10px] font-mono text-[#a69f91]">14-MIN TRANSFER</span>
-                    </div>
-                    <p class="text-xs text-[#dcd6ca]/80 leading-relaxed font-light">
-                      Chauffeured vehicle transfer directly from SFO Signature Flight Support or Oakland Jet Center via I-80 corridor. Helipad charter landing coordinates and private tender maritime docking at Pier 38 coordinated through Concierge Desk.
-                    </p>
-                  </div>
-
-                  <div class="p-4 bg-[#060709] border border-white/10 rounded-sm">
-                    <div class="flex items-center gap-2.5 mb-1.5">
-                      <span class="text-xs font-mono font-semibold text-[#c5a059]">03. GUEST REGISTRATION & SECURITY ESCORT</span>
-                      <span class="text-[10px] font-mono text-[#c5a059]">CONFIDENTIAL</span>
-                    </div>
-                    <p class="text-xs text-[#dcd6ca]/80 leading-relaxed font-light">
-                      All guests are pre-authorized with Millennium Tower building security. Upon vehicle handoff at the porte-cochère, a senior Black Label concierge officer greets your party and manages discrete elevator transit directly to Level 48.
-                    </p>
                   </div>
                 </div>
               </div>
